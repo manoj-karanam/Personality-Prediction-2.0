@@ -1,0 +1,34 @@
+.home-container {
+    text-align: center;
+  }
+  
+  .home-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  
+  .button {
+    margin-left: 10px;
+  }
+  
+  .home-main h1 {
+    margin-top: 50px;
+  }
+  
+
+  .button, a.button {
+    background-color: #483EA8;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .button:hover, a.button:hover {
+    opacity: 0.8;
+  }
+  

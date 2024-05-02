@@ -1,0 +1,58 @@
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 5px 0;
+    text-align: left; /* Align text to the left */
+    display: block; /* Makes the span behave like a block element */
+  }
+  
+  .input-error {
+    border: 2px solid red;
+  }
+  
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card {
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #483EA8 !important;
+    color: white;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
