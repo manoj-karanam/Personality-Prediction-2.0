@@ -39,8 +39,8 @@ class PersonalityPredictor:
 
 #HOW TO USE
 
-# with open('/home/rohit-ramkumar/Documents/Resume/Resume/Rohit_Resume_1.pdf', 'rb') as file:
-#     pdf_content = file.read()
+with open('My_Resume.pdf', 'rb') as file:
+    pdf_content = file.read()
 
-# pred = PersonalityPredictor(resume=pdf_content)
-# pred.predict_personality()
+pred = PersonalityPredictor(resume=pdf_content)
+pred.predict_personality()
