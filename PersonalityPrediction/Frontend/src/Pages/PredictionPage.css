@@ -5,6 +5,7 @@
     padding: 20px;
     text-align: center;
     font-family: 'Arial', sans-serif;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Layout for the logout button */
@@ -25,6 +26,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #e53935;
+    transform: scale(1.05);
 }
 
 /* Title styling */
@@ -34,6 +41,7 @@
     margin-top: 10px;
     margin-bottom: 20px;
     color: #483EA8;
+    animation: fadeIn 1s ease-out;
 }
 
 /* Card styling */
@@ -42,6 +50,11 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Drop area styling */
@@ -51,6 +64,11 @@
     padding: 20px;
     cursor: pointer;
     margin: 20px 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.drop-area:hover {
+    background-color: rgba(203, 208, 240, 0.5);
 }
 
 /* File upload label styling */
@@ -59,30 +77,11 @@
     color: blue;
     cursor: pointer;
     font-size: 16px;
+    transition: color 0.3s ease;
 }
 
-/* Supported formats description */
-.supported-formats {
-    color: gray;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-/* File list and uploaded files */
-.file-list,
-.uploaded-files {
-    margin-top: 20px;
-    text-align: left;
-}
-
-/* File preview and uploaded file card */
-.file-preview,
-.uploaded-file-card {
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    position: relative;
+.file-upload-label:hover {
+    color: darkblue;
 }
 
 /* Upload button styling */
@@ -95,9 +94,14 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Disabled button styling */
+.upload-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
 .upload-button:disabled {
     opacity: 0.5;
     cursor: default;
@@ -115,22 +119,11 @@
     color: #f44336;
     font-weight: bold;
     text-transform: uppercase;
+    transition: color 0.2s;
 }
 
-/* Error styling */
-.error {
-    background-color: rgba(255, 0, 0, 0.1);
-    border-color: red;
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-/* Error message styling */
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+.remove-file:hover {
+    color: #b71c1c;
 }
 
 /* Result container styling */
@@ -140,4 +133,22 @@
     border-radius: 4px;
     padding: 10px;
     margin-top: 20px;
+    transition: background-color 0.3s;
+    animation: slideInFromLeft 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

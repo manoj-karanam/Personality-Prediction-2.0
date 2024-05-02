@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './PredictionPage.css';
 
 const PredictionPage = () => {
@@ -7,6 +9,8 @@ const PredictionPage = () => {
     const [prediction, setPrediction] = useState('');
     const [error, setError] = useState('');
     const [personalityDetail, setPersonalityDetail] = useState('');
+
+    const navigate = useNavigate(); // Hook from react-router-dom to navigate programmatically
 
     const personalityTypes = {
         'I': 'Introversion',
@@ -62,8 +66,28 @@ const PredictionPage = () => {
         setError('');
     };
 
+    const handleLogout = () => {
+        // Perform any cleanup or token removal here before logging out
+        console.log('Logging out...');
+
+        // Redirect to the home page
+        navigate('/');
+    };
+
     return (
+        <>
+        <div className="logout">
+                <button className="logout-button" onClick={handleLogout}>Logout</button>
+            </div>
         <div className="upload-container card">
+            <div className="file-list">
+                    <div className="file-preview">{file.name}</div>
+                    <button onClick={removeFile} className="remove-file">Remove</button>
+                </div>
+            <div>
+
+            </div>
+            
             <h2 className="upload-title">Personality Prediction from Resume</h2>
             <div className="drop-area">
                 <input type="file" id="resume-upload" style={{ display: 'none' }} onChange={handleFileChange} accept=".pdf"/>
@@ -93,6 +117,8 @@ const PredictionPage = () => {
                 </div>
             )}
         </div>
+        </>
+        
     );
 };
 

@@ -70,10 +70,14 @@ function SignInPage() {
       }
     }
   };
+  const goBack = () => {
+    navigate('/'); // This navigates to the home page
+  };
 
   return (
     <div className="signin-container">
       <div className="card">
+        <button onClick={goBack}>Back</button>
         <form onSubmit={handleSubmit}>
           <h2>Sign In</h2>
           <input
