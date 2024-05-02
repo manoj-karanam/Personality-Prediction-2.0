@@ -12,6 +12,8 @@
   animation: slideDown 0.5s ease-out forwards; /* Slides down from the top */
 }
 
+
+
 /* Styling for buttons in the header */
 .button {
   margin-left: 10px;
@@ -29,7 +31,7 @@
 .button:hover {
   opacity: 0.8;
   transform: scale(1.05); /* Slightly enlarges the button */
-  background-color: #c3c2d6; /* Changes color on hover */
+  background-color: #564FB1; /* Changes color on hover */
 }
 
 /* Main heading in the home component */
@@ -58,4 +60,13 @@ a.button {
 @keyframes popIn {
   0% { transform: scale(0.5); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+.background-gif{
+  width: 80%;
+}
+
+
+.title{
+  color:whitesmoke
 }
