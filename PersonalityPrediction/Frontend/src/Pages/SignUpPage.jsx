@@ -14,6 +14,7 @@ function SignUpPage() {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -73,7 +74,9 @@ function SignUpPage() {
         // API integration
         const response = await axios.post("http://127.0.0.1:8000/api/register/", userData);
         console.log('Server response:', response.data);
-        navigate("/"); // Navigate on successful registration
+        setTimeout(() => {
+          navigate("/"); // Navigate after 2 seconds
+        }, 2000);
       } catch (error) {
         console.error('Error posting data:', error.response || error);
         setErrors({ general: 'Failed to register. Please try again.' });
@@ -150,7 +153,9 @@ function SignUpPage() {
             required
           />
           {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
-          <button type="submit">Register</button>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Registering...' : 'Register'}
+          </button>
           {errors.general && <div className="error general-error">{errors.general}</div>}
         </form>
       </div>

@@ -48,6 +48,7 @@ const PredictionPage = () => {
             setPrediction(result);
             setError('');
             setPersonalityDetail(parsePersonalityType(result));
+            // setGifUrl(`https://api.giphy.com/v1/gifs/random?api_key=YOUR_API_KEY&tag=personality`);
         } catch (err) {
             setError('Failed to predict personality. Please try again.');
             console.error('Error uploading file:', err);
@@ -93,6 +94,7 @@ const PredictionPage = () => {
                         <h3>Predicted Personality:</h3>
                         <p>{prediction}</p>
                         <p>{personalityDetail}</p>
+                        {/* {gifUrl && <img src={gifUrl} alt="Personality GIF" />} */}
                     </div>
                 )}
             </div>
