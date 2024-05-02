@@ -45,7 +45,7 @@ def register_user(request):
         first_name = registration_data['studentName']['firstName']
         last_name = registration_data['studentName']['lastName']
         email = registration_data['email']
-      
+        
         password = registration_data['password']
         confirm_password = registration_data['confirmPassword']
     

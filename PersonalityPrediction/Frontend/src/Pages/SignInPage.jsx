@@ -47,7 +47,7 @@ function SignInPage() {
     } else {
       console.log('Logging in with:', formData);
 
-      const response = axios.post("https://", formData)
+      const response = axios.post("http://127.0.0.1:8000/", formData)
       setErrors({}); // Clear errors on successful validation
       navigate("/prediction")
     }

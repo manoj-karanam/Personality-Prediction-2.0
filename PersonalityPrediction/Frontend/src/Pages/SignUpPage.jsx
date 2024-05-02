@@ -9,8 +9,8 @@ function SignUpPage() {
     firstName: '',
     lastName: '',
     email: '',
-    phoneNumber: '',
-    password: ''
+    password: '',
+    confirmPassword: ''  // Added confirm password to match backend requirements
   });
 
   const [errors, setErrors] = useState({});
@@ -19,9 +19,6 @@ function SignUpPage() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const validatePhoneNumber = (phoneNumber) => {
-    return /^\d{10}$/.test(phoneNumber); // Assuming phone number should be 10 digits
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +32,7 @@ function SignUpPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let tempErrors = {};
     // Check for empty fields
@@ -50,21 +47,37 @@ function SignUpPage() {
       tempErrors.email = 'Invalid email format';
     }
 
-    // Phone number validation
-    if (formData.phoneNumber && !validatePhoneNumber(formData.phoneNumber)) {
-      tempErrors.phoneNumber = 'Invalid phone number format';
+    // Check if passwords match
+    if (formData.password !== formData.confirmPassword) {
+      tempErrors.confirmPassword = 'Passwords do not match';
     }
 
     if (Object.keys(tempErrors).length > 0) {
       setErrors(tempErrors);
       return;
     } else {
-      console.log('Form data:', formData); // Replace this with backend integration
-      setErrors({});
+      // Backend data structure adjustment
+      const userData = {
+        registration: {
+          studentName: {
+            firstName: formData.firstName,
+            lastName: formData.lastName
+          },
+          email: formData.email,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword
+        }
+      };
 
-      // API integration
-      const response = axios.post("https://", formData)
-      navigate("/")
+      try {
+        // API integration
+        const response = await axios.post("http://127.0.0.1:8000/registration", userData);
+        console.log('Server response:', response.data);
+        navigate("/"); // Navigate on successful registration
+      } catch (error) {
+        console.error('Error posting data:', error.response || error);
+        setErrors({ general: 'Failed to register. Please try again.' });
+      }
     }
   };
 
@@ -94,7 +107,7 @@ function SignUpPage() {
           />
           {errors.lastName && <span className="error">{errors.lastName}</span>}
           <input
-            // type="email"
+            type="email"
             name="email"
             className={errors.email ? 'input-error' : ''}
             value={formData.email}
@@ -103,7 +116,7 @@ function SignUpPage() {
             required
           />
           {errors.email && <span className="error">{errors.email}</span>}
-          <input
+          {/* <input
             type="tel"
             name="phoneNumber"
             className={errors.phoneNumber ? 'input-error' : ''}
@@ -112,7 +125,7 @@ function SignUpPage() {
             placeholder="Phone Number"
             required
           />
-          {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>}
+          {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>} */}
           <input
             type="password"
             name="password"
@@ -123,7 +136,18 @@ function SignUpPage() {
             required
           />
           {errors.password && <span className="error">{errors.password}</span>}
+          <input
+            type="password"
+            name="confirmPassword"
+            className={errors.confirmPassword ? 'input-error' : ''}
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm Password"
+            required
+          />
+          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
           <button type="submit">Register</button>
+          {errors.general && <div className="error general-error">{errors.general}</div>}
         </form>
       </div>
     </div>
