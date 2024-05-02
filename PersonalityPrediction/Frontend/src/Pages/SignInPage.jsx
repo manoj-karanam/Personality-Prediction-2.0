@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignUpPage.css'; // Make sure the CSS path matches your structure
+import './SignUpPage.css'; // Ensure the CSS path matches your structure
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -28,7 +28,7 @@ function SignInPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let tempErrors = {};
 
@@ -37,19 +37,37 @@ function SignInPage() {
       tempErrors.email = 'Invalid email format';
     }
 
-    // Validate password (can add more specific checks if necessary)
+    // Validate password
     if (!formData.password) {
       tempErrors.password = 'Password is required';
     }
 
     if (Object.keys(tempErrors).length > 0) {
       setErrors(tempErrors);
-    } else {
-      console.log('Logging in with:', formData);
+      return; // Prevent further execution if there are errors
+    }
 
-      const response = axios.post("http://127.0.0.1:8000/", formData)
+    // Create the payload inside the handleSubmit function
+    const payload = {
+      login: {
+        email: formData.email,
+        password: formData.password
+      }
+    };
+
+    try {
+      // Log in with provided credentials
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", payload);
+      console.log('Login successful:', response.data);
       setErrors({}); // Clear errors on successful validation
-      navigate("/prediction")
+      navigate("/prediction"); // Navigate after successful login
+    } catch (error) {
+      // Handle errors if the request fails
+      console.error('Login error:', error.response || error);
+      if (error.response) {
+        // Set backend error messages here if you expect any
+        setErrors({ apiError: error.response.data.detail || 'Error logging in' });
+      }
     }
   };
 
@@ -59,6 +77,7 @@ function SignInPage() {
         <form onSubmit={handleSubmit}>
           <h2>Sign In</h2>
           <input
+            type="email"
             name="email"
             className={errors.email ? 'input-error' : ''}
             value={formData.email}
@@ -77,6 +96,7 @@ function SignInPage() {
             required
           />
           {errors.password && <span className="error">{errors.password}</span>}
+          {errors.apiError && <div className="api-error">{errors.apiError}</div>}
           <button type="submit">Log In</button>
         </form>
       </div>

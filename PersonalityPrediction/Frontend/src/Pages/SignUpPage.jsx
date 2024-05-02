@@ -71,7 +71,7 @@ function SignUpPage() {
 
       try {
         // API integration
-        const response = await axios.post("http://127.0.0.1:8000/registration", userData);
+        const response = await axios.post("http://127.0.0.1:8000/api/register/", userData);
         console.log('Server response:', response.data);
         navigate("/"); // Navigate on successful registration
       } catch (error) {
