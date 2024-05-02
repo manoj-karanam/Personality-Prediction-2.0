@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -67,58 +66,37 @@ const PredictionPage = () => {
     };
 
     const handleLogout = () => {
-        // Perform any cleanup or token removal here before logging out
-        console.log('Logging out...');
-
-        // Redirect to the home page
         navigate('/');
     };
 
     return (
-        <>
-        <div className="logout">
+        <div className="page-container">
+            <div className="logout">
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
             </div>
-        <div className="upload-container card">
-            <div className="file-list">
-                    <div className="file-preview">{file.name}</div>
-                    <button onClick={removeFile} className="remove-file">Remove</button>
+            <div className="upload-container card">
+                <h2 className="upload-title">Personality Prediction from Resume</h2>
+                <div className="drop-area">
+                    <input type="file" id="resume-upload" style={{ display: 'none' }} onChange={handleFileChange} accept=".pdf"/>
+                    <label htmlFor="resume-upload" className="file-upload-label">Click here to select a resume PDF file</label>
                 </div>
-            <div>
-
+                {file && (
+                    <div className="file-list">
+                        <div className="file-preview">{file.name}</div>
+                        <button onClick={removeFile} className="remove-file">Remove</button>
+                    </div>
+                )}
+                <button className="upload-button" onClick={handleFileUpload} disabled={!file}>Upload and Predict</button>
+                {error && <div className="error"><p className="error-message">{error}</p></div>}
+                {prediction && (
+                    <div className="result">
+                        <h3>Predicted Personality:</h3>
+                        <p>{prediction}</p>
+                        <p>{personalityDetail}</p>
+                    </div>
+                )}
             </div>
-            
-            <h2 className="upload-title">Personality Prediction from Resume</h2>
-            <div className="drop-area">
-                <input type="file" id="resume-upload" style={{ display: 'none' }} onChange={handleFileChange} accept=".pdf"/>
-                <label htmlFor="resume-upload" className="file-upload-label">
-                    Click here to select a resume PDF file
-                </label>
-            </div>
-            {file && (
-                <div className="file-list">
-                    <div className="file-preview">{file.name}</div>
-                    <button onClick={removeFile} className="remove-file">Remove</button>
-                </div>
-            )}
-            <button className="upload-button" onClick={handleFileUpload} disabled={!file}>
-                Upload and Predict
-            </button>
-            {error && (
-                <div className="error">
-                    <p className="error-message">{error}</p>
-                </div>
-            )}
-            {prediction && (
-                <div className="result">
-                    <h3>Predicted Personality:</h3>
-                    <p>{prediction}</p>
-                    <p>{personalityDetail}</p>
-                </div>
-            )}
         </div>
-        </>
-        
     );
 };
 
