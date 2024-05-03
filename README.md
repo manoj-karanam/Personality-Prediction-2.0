@@ -1,4 +1,4 @@
-# Personality-Prediction-2.0
+Personality-Prediction-2.0
 
 Frontend Setup:
 Clone the Repository: Clone the project's code repository to your local machine.
