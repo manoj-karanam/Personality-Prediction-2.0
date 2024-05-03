@@ -1,0 +1,116 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: auto;
+    color: #1e8323;
+    font-family: 'Arial', sans-serif;
+}
+
+.upload-container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, background-color 0.5s ease;
+    animation: popUp 0.6s cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.logout-button {
+    padding: 8px 16px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: url('https://example.com/cursor-pointer.png'), pointer; /* Assuming a custom cursor URL */
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #f50057;
+    transform: scale(1.05);
+    cursor: url('https://example.com/cursor-active.png'), pointer; /* Assuming a custom active cursor URL */
+}
+
+.upload-title {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #483EA8;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 1s ease-out;
+}
+
+.drop-area {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px dashed #483EA8;
+    padding: 20px;
+    cursor: url('https://example.com/cursor-upload.png'), pointer; /* Custom cursor for upload area */
+    margin: 20px 0;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+.drop-area:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.file-upload-label {
+    display: block;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.file-upload-label:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+/* Keyframes and Additional Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popUp {
+    0% { transform: scale(0.5); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
