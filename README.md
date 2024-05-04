@@ -18,6 +18,9 @@
 
 - **Install Dependencies:**
   - Execute `pip install django` and `pip install djongo`
+    
+    Incase if you are experiencing issues with connecting to MongoDB
+  - `pip manage.py makemigrations` and `pip manage.py migrate`
 
 - **Start the Backend Server:**
   - Launch the Backend server after going to the repository where manage.py is located by running `python3 manage.py runserver`.
