@@ -19,5 +19,5 @@
 -**Install Dependencies:**
   -Execute `pip install django` and `pip install djongo`
 
-- ** Start the Backend Server:**
+- **Start the Backend Server:**
   - Launch the Backend server after going to the repository where manage.py is located by running `python3 manage.py runserver`.
