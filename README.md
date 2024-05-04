@@ -11,8 +11,8 @@
 - **Install Dependencies:**
   - Execute `npm install` to install all necessary dependencies.
 
-- **Start the Development Server:** 
-  - Launch the development server by running `npm run dev`.
+- **Start the Frontend Server:** 
+  - Launch the Frontend server by running `npm run dev`.
 
 **Backend Setup:**
 
